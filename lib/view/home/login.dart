@@ -36,31 +36,34 @@ class _LoginpageState extends State<Loginpage> {
   Widget build(BuildContext context) {
     return Scaffold(
     body: SafeArea(
-      child: Column(
-        children: [
-          TextField(
-            controller: namecontroller,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "enter your name"
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            TextField(
+              controller: namecontroller,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "enter your name"
+              ),
             ),
-          ),
-          SizedBox(height:5,),
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "enter your password"
+            SizedBox(height:5,),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "enter your password"
+              ),
             ),
-          ),
-          SizedBox(height: 10,),
-          ElevatedButton(onPressed: (){
-            Login();
-          },
-           child: Text("Login"),
-           ),
-
-        ],
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              Login();
+            },
+             child: Text("Login"),
+             ),
+        
+          ],
+        ),
       )
       ),
     );
