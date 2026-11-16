@@ -1,11 +1,11 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_do/model/student_model.dart';
 
-class Service {
+class StudentService {
   Box<StudentModel>box=Hive.box<StudentModel>("students");
 
 // save
-  Future<void>save(StudentModel data)async{
+  Future<void>saves(StudentModel data)async{
     await box.add(data);
   }
   // list
