@@ -3,7 +3,7 @@ import 'package:just_do/view/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginpage extends StatefulWidget {
-  const new({super.key});
+  const Loginpage({super.key});
 
   @override
   State<Loginpage> createState() => _LoginpageState();
@@ -14,18 +14,20 @@ class _LoginpageState extends State<Loginpage> {
   final namecontroller=TextEditingController();
   final passwordController =TextEditingController();
 
-  void Login()async{
-    String name =namecontroller.text;
-    String password =passwordController.text;
+  void login()async{
+    final name =namecontroller.text;
+    final password =passwordController.text;
 
     if(name .isNotEmpty && password .isNotEmpty){
       final savelogin=await SharedPreferences.getInstance();
       await savelogin.setBool("login", true);
+      await savelogin.setString("username",name);
+
 
       if(!mounted)return;
 
       Navigator.pushReplacement(context,
-       MaterialPageRoute(builder: (context)=>Homepage())
+       MaterialPageRoute(builder: (context)=>Homepage(username: name,))
        );
 
 
@@ -57,7 +59,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             SizedBox(height: 10,),
             ElevatedButton(onPressed: (){
-              Login();
+              login();
             },
              child: Text("Login"),
              ),

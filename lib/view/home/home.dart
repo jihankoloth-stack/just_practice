@@ -5,7 +5,8 @@ import 'package:just_do/model/student_model.dart';
 import 'package:just_do/service/student_service.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  final String username;
+  const Homepage({super.key,required this.username});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -91,6 +92,12 @@ void save()async{
         pop();
       },
       child:Icon(Icons.add),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        toolbarHeight: 50,
+        title: Text(widget.username),
+        centerTitle: true,
       ),
       body: SafeArea(
         child:Padding(padding: EdgeInsets.all(10),

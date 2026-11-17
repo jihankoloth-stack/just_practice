@@ -29,7 +29,7 @@ class _SplashscreenState extends State<Splashscreen> {
 
     if(save){
       Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context)=>Homepage())
+      MaterialPageRoute(builder: (context)=>Homepage(username:"username",))
       );
     }else{
       Navigator.pushReplacement(context, 
