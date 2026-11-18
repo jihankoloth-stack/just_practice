@@ -24,16 +24,16 @@ class _SplashscreenState extends State<Splashscreen> {
   Future<void>chacklogin()async{
     final loginsave=await SharedPreferences.getInstance();
     final save=loginsave.getBool("login")??false;
-
+    final username =loginsave.getString("username")??"";
    if(!mounted)return;
 
     if(save){
       Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context)=>Homepage(username:"username",))
+      MaterialPageRoute(builder: (context)=>Homepage(username: username,))
       );
     }else{
       Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context) => Loginpage(),)
+      MaterialPageRoute(builder: (context) => Loginpage(),),
       );
     }
   } 
