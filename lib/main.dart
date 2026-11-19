@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:just_do/model/student_model.dart';
 import 'package:just_do/view/home/splash.dart';
 
 void main()async{
 
-  WidgetsFlutterBinding.ensureInitialized();
+WidgetsFlutterBinding.ensureInitialized();
+
  await Hive.initFlutter();
- await Hive.openBox("students");
+
+ Hive.registerAdapter(StudentModelAdapter());
+
+ await Hive.openBox<StudentModel>("students");
   runApp(JKapp());
 }
 class JKapp extends StatelessWidget {
