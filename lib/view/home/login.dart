@@ -10,61 +10,57 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  final namecontroller = TextEditingController();
-  final passwordController = TextEditingController();
+final nameController=TextEditingController();
+final passwordController=TextEditingController();
 
-  void login() async {
-    final name = namecontroller.text;
-    final password = passwordController.text;
+void login()async{
+  final name=nameController.text;
+  final password=passwordController.text;
 
-    if (name.isNotEmpty && password.isNotEmpty) {
-      final savelogin = await SharedPreferences.getInstance();
-      await savelogin.setBool("login", true);
-      await savelogin.setString("username", name);
+  if(name.isNotEmpty && password.isNotEmpty){
+  final save= await SharedPreferences.getInstance();
+  await save.setBool("save", true);
+  await save.setString("username", name);
 
-      if (!mounted) return;
+  if(!mounted)return;
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Homepage(username: name)),
-      );
-    }
+  Navigator.pushReplacement(context,
+   MaterialPageRoute(builder: (context)=>Homepage(username: name,)),
+   );
+
   }
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              TextField(
-                controller: namecontroller,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "enter your name",
-                ),
+        child:Padding(padding: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "name"
               ),
-              SizedBox(height: 5),
-              TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "enter your password",
-                ),
+            ),
+            SizedBox(height: 10,),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "password"
               ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  login();
-                },
-                child: Text("Login"),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 15,),
+            ElevatedButton(onPressed: (){},
+             child:Text("login"), 
+             )
+          ],
         ),
-      ),
+        )
+         ),
     );
   }
 }

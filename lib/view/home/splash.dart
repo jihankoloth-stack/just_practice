@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
-  const new({super.key});
+  const Splashscreen({super.key});
 
   @override
   State<Splashscreen> createState() => _SplashscreenState();
@@ -14,34 +14,34 @@ class Splashscreen extends StatefulWidget {
 
 class _SplashscreenState extends State<Splashscreen> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Timer(Duration(seconds: 3),()async{
-    chacklogin();
+
     });
   }
+  Future<void>checklogin()async{
+    final login=await SharedPreferences.getInstance();
+    final savelogin=login.getBool("save")?? false;
+    final username=login.getString("username")??"";
+    if(!mounted)return;
 
-  Future<void>chacklogin()async{
-    final loginsave=await SharedPreferences.getInstance();
-    final save=loginsave.getBool("login")??false;
-    final username =loginsave.getString("username")??"";
-   if(!mounted)return;
 
-    if(save){
-      Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context)=>Homepage(username: username,))
-      );
+    if(savelogin){
+      Navigator.pushReplacement(context,
+       MaterialPageRoute(builder: (context) =>Homepage(username:username,),)
+       );
     }else{
-      Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder: (context) => Loginpage(),),
-      );
+      Navigator.pushReplacement(context,
+       MaterialPageRoute(builder: (context) =>Loginpage() ,)
+       );
     }
-  } 
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   backgroundColor: Colors.amber,
+      backgroundColor: Colors.amber,
     );
   }
 }
