@@ -17,7 +17,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3),()async{
-
+   checklogin();
     });
   }
   Future<void>checklogin()async{

@@ -36,28 +36,39 @@ void login()async{
     return Scaffold(
       body: SafeArea(
         child:Padding(padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "name"
-              ),
+        child: Center(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            width: double.infinity,
+            height: 200,
+            // color: Colors.amber,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "name"
+                  ),
+                ),
+                SizedBox(height: 10,),
+                TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "password"
+                  ),
+                ),
+                SizedBox(height: 15,),
+                ElevatedButton(onPressed: (){
+                  login();
+                },
+                 child:Text("login"), 
+                 )
+              ],
             ),
-            SizedBox(height: 10,),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "password"
-              ),
-            ),
-            SizedBox(height: 15,),
-            ElevatedButton(onPressed: (){},
-             child:Text("login"), 
-             )
-          ],
+          ),
         ),
         )
          ),

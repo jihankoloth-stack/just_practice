@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_do/view/home/add.dart';
 
 class Homepage extends StatefulWidget {
   final String? username;
@@ -13,7 +14,11 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, 
+          MaterialPageRoute(builder: (context) => Addpage(),)
+          );
+        },
         child:Icon(Icons.add),
       ),
       appBar: AppBar(
