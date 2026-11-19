@@ -5,7 +5,7 @@ class StudentService {
   Box<StudentModel>box=Hive.box<StudentModel>("students");
 
   // save
-  Future<void>save(StudentModel saves)async{
+  Future<void>add(StudentModel saves)async{
   await box.add(saves);
   }
 
