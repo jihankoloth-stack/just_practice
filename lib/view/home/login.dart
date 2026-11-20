@@ -10,68 +10,70 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-final nameController=TextEditingController();
-final passwordController=TextEditingController();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
 
-void login()async{
-  final name=nameController.text;
-  final password=passwordController.text;
+  void login() async {
+    final name = nameController.text;
+    final password = passwordController.text;
 
-  if(name.isNotEmpty && password.isNotEmpty){
-  final save= await SharedPreferences.getInstance();
-  await save.setBool("save", true);
-  await save.setString("username", name);
+    if (name.isNotEmpty && password.isNotEmpty) {
+      final save = await SharedPreferences.getInstance();
+      await save.setBool("save", true);
+      await save.setString("username", name);
 
-  if(!mounted)return;
+      if (!mounted) return;
 
-  Navigator.pushReplacement(context,
-   MaterialPageRoute(builder: (context)=>Homepage(username: name,)),
-   );
-
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage(username: name)),
+      );
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child:Padding(padding: EdgeInsets.all(10),
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.all(20),
-            width: double.infinity,
-            height: 200,
-            // color: Colors.amber,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "name"
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              width: double.infinity,
+              height: 200,
+              // color: Colors.amber,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "name",
+                    ),
                   ),
-                ),
-                SizedBox(height: 10,),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "password"
+                  SizedBox(height: 10),
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "password",
+                    ),
                   ),
-                ),
-                SizedBox(height: 15,),
-                ElevatedButton(onPressed: (){
-                  login();
-                },
-                 child:Text("login"), 
-                 )
-              ],
+                  SizedBox(height: 15),
+                  ElevatedButton(
+                    onPressed: () {
+                      login();
+                    },
+                    child: Text("login"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-        )
-         ),
+      ),
     );
   }
 }
